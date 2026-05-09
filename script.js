@@ -180,23 +180,35 @@
     window.addEventListener('scroll', scrollHandler, { passive: true });
     scrollHandler();
 
+    function openMenu() {
+      nav.classList.add('open');
+    }
+
+    function closeMenu() {
+      nav.classList.remove('open');
+    }
+
     /* 移动端菜单切换 */
     toggle.addEventListener('click', function () {
-      nav.classList.toggle('open');
+      if (nav.classList.contains('open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
 
     /* 点击导航链接关闭菜单 */
     var links = nav.querySelectorAll('.nav-links a');
     for (var i = 0; i < links.length; i++) {
       links[i].addEventListener('click', function () {
-        nav.classList.remove('open');
+        closeMenu();
       });
     }
 
-    /* 点击页面其他区域关闭菜单 */
+    /* 点击遮罩区域关闭菜单 */
     document.addEventListener('click', function (e) {
       if (nav.classList.contains('open') && !nav.contains(e.target)) {
-        nav.classList.remove('open');
+        closeMenu();
       }
     });
   }
