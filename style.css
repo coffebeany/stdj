@@ -86,6 +86,7 @@ strong { color: var(--gold-dark); font-weight: 600; }
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 .nav-logo {
   display: flex;
@@ -695,29 +696,29 @@ strong { color: var(--gold-dark); font-weight: 600; }
 @media (max-width: 768px) {
   :root { --nav-height: 56px; }
 
+  .nav { overflow: visible; }
+
   .section { padding: 56px 0; }
   .section-title { margin-bottom: 32px; }
 
-  /* 导航移动端 — 下拉式菜单 */
+  /* 导航移动端 */
   .nav-links {
     position: absolute;
-    top: var(--nav-height);
-    right: 16px;
-    width: 200px;
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-lg);
+    top: 100%;
+    right: 0;
+    background: #ffffff;
     flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
+    align-items: flex-start;
     gap: 0;
-    padding: 8px 0;
+    padding: 10px 8px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    min-width: 180px;
     opacity: 0;
     pointer-events: none;
     transform: translateY(-8px);
     transition: opacity 0.25s, transform 0.25s;
-    z-index: 999;
   }
   .nav.open .nav-links {
     opacity: 1;
@@ -726,30 +727,16 @@ strong { color: var(--gold-dark); font-weight: 600; }
   }
   .nav-links a {
     font-size: 15px;
-    padding: 12px 20px;
-    border-radius: 0;
-    display: block;
-    text-align: left;
-    transition: background 0.15s, color 0.15s;
+    padding: 12px 18px;
+    border-radius: 6px;
+    width: 100%;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--border-light);
   }
-  .nav-links a:hover {
-    background: var(--gold-pale);
-    color: var(--gold-dark);
-  }
-  .nav-links a + a {
-    border-top: 1px solid var(--border-light);
+  .nav-links li:last-child a {
+    border-bottom: none;
   }
   .nav-toggle { display: flex; }
-
-  /* 移动端菜单打开时背景遮罩 */
-  .nav.open::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.2);
-    z-index: 998;
-    pointer-events: auto;
-  }
 
   /* Hero */
   .hero-logo img { width: 72px; height: 72px; }
