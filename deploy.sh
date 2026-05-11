@@ -7,7 +7,6 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PID_FILE="$SCRIPT_DIR/.server.pid"
-LOG_FILE="$SCRIPT_DIR/.server.log"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -76,7 +75,7 @@ start_serve() {
 
     log_info "启动后台 HTTP 服务器（端口: $port）"
     cd "$SCRIPT_DIR"
-    nohup python3 -m http.server "$port" > "$LOG_FILE" 2>&1 &
+    nohup python3 -m http.server "$port" > /dev/null 2>&1 &
     local pid=$!
     echo "$pid" > "$PID_FILE"
 
@@ -86,9 +85,8 @@ start_serve() {
         log_info "访问地址: http://localhost:$port"
         log_tip "git pull 更新代码后，直接刷新浏览器即可看到最新内容"
         log_tip "停止服务器: ./deploy.sh stop"
-        log_tip "查看日志: tail -f $LOG_FILE"
     else
-        log_error "启动失败，请查看日志: $LOG_FILE"
+        log_error "启动失败"
         rm -f "$PID_FILE"
         exit 1
     fi
