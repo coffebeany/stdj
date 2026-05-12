@@ -34,7 +34,7 @@ check_files() {
             missing=1
         fi
     done
-    for d in 沙头 南沙 佛山; do
+    for d in shatou nansha foshan; do
         if [ ! -d "$SCRIPT_DIR/$d" ]; then
             log_error "缺少目录: $d"
             missing=1
@@ -133,7 +133,7 @@ deploy_nginx() {
     sudo cp "$SCRIPT_DIR/style.css" "$DEPLOY_DIR/"
     sudo cp "$SCRIPT_DIR/script.js" "$DEPLOY_DIR/"
     sudo cp "$SCRIPT_DIR/icon.jpg" "$DEPLOY_DIR/"
-    for d in 沙头 南沙 佛山; do
+    for d in shatou nansha foshan; do
         sudo mkdir -p "$DEPLOY_DIR/$d"
         sudo cp "$SCRIPT_DIR/$d/"* "$DEPLOY_DIR/$d/"
     done
@@ -179,7 +179,7 @@ copy_only() {
     cp "$SCRIPT_DIR/style.css" "$target/"
     cp "$SCRIPT_DIR/script.js" "$target/"
     cp "$SCRIPT_DIR/icon.jpg" "$target/"
-    for d in 沙头 南沙 佛山; do
+    for d in shatou nansha foshan; do
         mkdir -p "$target/$d"
         cp "$SCRIPT_DIR/$d/"* "$target/$d/"
     done

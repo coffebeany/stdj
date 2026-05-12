@@ -10,9 +10,9 @@
 ├── script.js           交互逻辑（滚动动画、照片墙、门店滑动）
 ├── deploy.sh           部署脚本（macOS / Linux）
 ├── icon.jpg            品牌 Logo
-├── 沙头/               沙头店展示图
-├── 南沙/               南沙店展示图
-└── 佛山/               佛山店展示图
+├── shatou/             沙头店展示图（WebP 压缩）
+├── nansha/             南沙店展示图（WebP 压缩）
+└── foshan/             佛山店展示图（WebP 压缩）
 ```
 
 ## 快速启动（macOS / Linux）

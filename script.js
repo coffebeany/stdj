@@ -2,51 +2,23 @@
   'use strict';
 
   /* ============================================================
-     图片资源清单（文件名 + 预估宽高比）
+     图片资源清单（压缩后的 webp 图片，每店固定 3 张）
      ============================================================ */
   var STORE_PHOTOS = {
-    沙头: [
-      { file: '沙头/微信图片_20260508172424.jpg', ratio: 1.33 },
-      { file: '沙头/微信图片_20260508172428.jpg', ratio: 1.33 },
-      { file: '沙头/微信图片_20260508172431.jpg', ratio: 1.05 },
-      { file: '沙头/微信图片_20260508172434.jpg', ratio: 1.33 },
-      { file: '沙头/微信图片_20260508172437.jpg', ratio: 1.33 },
-      { file: '沙头/微信图片_20260508172441.jpg', ratio: 1.06 },
-      { file: '沙头/微信图片_20260508172444.png', ratio: 1.49 },
-      { file: '沙头/微信图片_20260508172447.png', ratio: 1.50 },
-      { file: '沙头/微信图片_20260508172451.png', ratio: 1.90 },
-      { file: '沙头/微信图片_20260508172454.png', ratio: 1.54 },
-      { file: '沙头/微信图片_20260508172457.png', ratio: 1.46 },
-      { file: '沙头/微信图片_20260508172500.png', ratio: 1.52 }
+    shatou: [
+      { file: 'shatou/01.webp', ratio: 1.33 },
+      { file: 'shatou/02.webp', ratio: 1.33 },
+      { file: 'shatou/03.webp', ratio: 1.05 }
     ],
-    南沙: [
-      { file: '南沙/微信图片_20260508172228.jpg', ratio: 2.72 },
-      { file: '南沙/微信图片_20260508172246.jpg', ratio: 1.78 },
-      { file: '南沙/微信图片_20260508172251.jpg', ratio: 2.99 },
-      { file: '南沙/微信图片_20260508172257.jpg', ratio: 1.00 },
-      { file: '南沙/微信图片_20260508172302.jpg', ratio: 1.44 },
-      { file: '南沙/微信图片_20260508172306.jpg', ratio: 0.73 },
-      { file: '南沙/微信图片_20260508172309.jpg', ratio: 0.80 },
-      { file: '南沙/微信图片_20260508172313.jpg', ratio: 0.79 },
-      { file: '南沙/微信图片_20260508172316.jpg', ratio: 1.78 },
-      { file: '南沙/微信图片_20260508172320.jpg', ratio: 0.73 },
-      { file: '南沙/微信图片_20260508172325.jpg', ratio: 1.43 }
+    nansha: [
+      { file: 'nansha/01.webp', ratio: 2.72 },
+      { file: 'nansha/02.webp', ratio: 1.78 },
+      { file: 'nansha/03.webp', ratio: 2.99 }
     ],
-    佛山: [
-      { file: '佛山/微信图片_20260508172329.jpg', ratio: 0.80 },
-      { file: '佛山/微信图片_20260508172337.jpg', ratio: 1.37 },
-      { file: '佛山/微信图片_20260508172340.jpg', ratio: 1.60 },
-      { file: '佛山/微信图片_20260508172344.jpg', ratio: 1.47 },
-      { file: '佛山/微信图片_20260508172347.jpg', ratio: 1.48 },
-      { file: '佛山/微信图片_20260508172351.jpg', ratio: 1.66 },
-      { file: '佛山/微信图片_20260508172354.jpg', ratio: 1.80 },
-      { file: '佛山/微信图片_20260508172358.jpg', ratio: 0.46 },
-      { file: '佛山/微信图片_20260508172401.jpg', ratio: 1.11 },
-      { file: '佛山/微信图片_20260508172405.jpg', ratio: 0.55 },
-      { file: '佛山/微信图片_20260508172409.jpg', ratio: 1.49 },
-      { file: '佛山/微信图片_20260508172413.jpg', ratio: 0.75 },
-      { file: '佛山/微信图片_20260508172417.jpg', ratio: 0.48 },
-      { file: '佛山/微信图片_20260508172420.jpg', ratio: 1.03 }
+    foshan: [
+      { file: 'foshan/01.webp', ratio: 0.80 },
+      { file: 'foshan/02.webp', ratio: 1.37 },
+      { file: 'foshan/03.webp', ratio: 1.60 }
     ]
   };
 
@@ -64,7 +36,7 @@
 
   /* ============================================================
      照片墙算法
-     随机选取 3-4 张图片，双列流式布局，保持原始宽高比
+     直接使用文件夹内的 3 张图片，双列流式布局，保持原始宽高比
      ============================================================ */
   function buildPhotoWall(storeName) {
     var container = document.getElementById('photos-' + storeName);
@@ -73,8 +45,7 @@
     var photos = STORE_PHOTOS[storeName];
     if (!photos) return;
 
-    var count = Math.random() < 0.5 ? 3 : 4;
-    var selected = shuffle(photos).slice(0, count);
+    var selected = photos;
 
     /* 使用双列流式布局，每张图保持原始宽高比 */
     container.style.display = 'flex';
@@ -249,7 +220,7 @@
     initStoreScroll();
 
     /* 为三家门店构建照片墙 */
-    var storeNames = ['沙头', '南沙', '佛山'];
+    var storeNames = ['shatou', 'nansha', 'foshan'];
     for (var i = 0; i < storeNames.length; i++) {
       buildPhotoWall(storeNames[i]);
     }
